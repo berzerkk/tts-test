@@ -1,0 +1,30 @@
+body {
+    color: white;
+}
+
+#text-to-generate {
+    font-size: 18px;
+    resize: vertical; /* Allow vertical resizing */
+    min-height: 60px; /* Set a minimum height */
+}
+
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.audio-controls-container {
+    position: fixed;
+    bottom: 0;
+    padding: 15px;
+}

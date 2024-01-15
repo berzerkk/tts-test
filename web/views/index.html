@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/styles.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="/js/getrequest.js"></script>
+	<script src="/js/postrequest.js"></script>
+</head>
+
+<body style="background-color:rgb(33, 35, 53)">
+    <div class="container">
+        <h3>Text to speech</h3>
+        <div>
+            <form id="customerForm">
+                <div class="form-group row">
+                    <label for="text-to-generate" class="col-sm-10 col-form-label">Text</label>
+                    <div class="col-sm-4">
+                        <textarea class="form-control" name="text-to-generate[]"></textarea>
+                    </div>
+                    <div class="col-sm-4">
+                        <select class="form-control" name="select-style[]">
+                            <option value="default">Default</option>
+                            <option value="chat">Chat</option>
+                            <option value="angry">Angry</option>
+                            <option value="cheerful">Cheerful</option>
+                            <option value="excited">Excited</option>
+                            <option value="friendly">Friendly</option>
+                            <option value="hopeful">Hopeful</option>
+                            <option value="sad">Sad</option>
+                            <option value="shouting">Shouting</option>
+                            <option value="terrified">Terrified</option>
+                            <option value="unfriendly">Unfriendly</option>
+                            <option value="whispering">Whispering</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-primary add-row">+</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <button class="btn btn-default generate-btn">Submit</button>
+        <div class="audio-controls-container well-sm">
+            <div id="postResultDiv">
+                <!-- Audio controls and loader will be appended here -->
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
