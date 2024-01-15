@@ -2,7 +2,7 @@ import azure.cognitiveservices.speech as speechsdk
 import sys
 import ast
 
-speech_key = "ffd0829ed9d540a9bd21275a408a8396"
+speech_key = process.env.AZUREKEY
 service_region = "francecentral"
 
 speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region)
