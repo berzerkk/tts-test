@@ -3,7 +3,7 @@ import sys
 import ast
 import os
 
-speech_key = os.environ['AZUREKEY']
+speech_key = 'ffd0829ed9d540a9bd21275a408a8396'
 service_region = "francecentral"
 
 speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region)
@@ -51,8 +51,10 @@ def generate_speak_xml(items):
     return speak_template
 
 speak_xml = generate_speak_xml(input_list)
+speak_xml= "salut"
+print(speak_xml)
 speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config)
-result = speech_synthesizer.speak_ssml_async(speak_xml).get()
+result = speech_synthesizer.speak_text_async(speak_xml).get()
 
 # output in file not stream
 # output_file = "output.wav"
