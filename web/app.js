@@ -2,18 +2,17 @@ var express = require("express");
 var app = express();
 const fs = require('fs');
 const path = require('path');
+const { spawn } = require('child_process');
+var bodyParser = require('body-parser');
 
 var router = express.Router();
-var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-const { spawn } = require('child_process');
 var i = 0
 app.use(express.static('public'));
 
 var paths = __dirname + '/views/';
 console.log("__dirname= " + __dirname);
-var customers = [];
 
 router.use(function (req,res,next) {
   console.log("/" + req.method);
@@ -33,23 +32,17 @@ app.post("/generate", (req, res) => {
 
     let audioData = Buffer.from('');
 
-    // Handle data from the Python script
     pythonProcess.stdout.on('data', (data) => {
         audioData = Buffer.concat([audioData, data]);
     });
 
-    // Handle errors
     pythonProcess.stderr.on('data', (error) => {
         console.error(`Error from Python script: ${error}`);
         res.status(500).send('Internal Server Error');
     });
 
-    // Handle script completion
     pythonProcess.on('close', (code) => {
         if (code === 0) {
-            // Script executed successfully
-
-            // Write audio data to a file
 			i += 1
             const outputFile = "output" + i + ".wav";
 			const directory = __dirname + '/public/tmp/';
@@ -81,12 +74,7 @@ app.post("/generate", (req, res) => {
     });
 });
 
-
-
-
-
 app.use("/",router);
-
 
 app.listen(8081, function () {
   console.log('Example app listening on port 8081!')

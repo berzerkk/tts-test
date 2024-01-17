@@ -40,6 +40,8 @@ node_modules/
 .idea/
 jspm_packages/
 
+public/tmp/
+
 # Typescript v1 declaration files
 typings/
 

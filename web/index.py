@@ -1,16 +1,15 @@
 import azure.cognitiveservices.speech as speechsdk
 import sys
 import ast
+import os
 
-speech_key = process.env.AZUREKEY
+speech_key = os.environ['AZUREKEY']
 service_region = "francecentral"
 
 speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region)
 
-# Note: the voice setting will not overwrite the voice element in input SSML.
 speech_config.speech_synthesis_voice_name = "en-US-JasonNeural"
 
-# text = " ".join(sys.argv[1:])
 input_str = sys.argv[1]
 print(f"Received input string: {input_str}")
 
@@ -52,14 +51,10 @@ def generate_speak_xml(items):
     return speak_template
 
 speak_xml = generate_speak_xml(input_list)
-print(speak_xml)
-
-
-# use the default speaker as audio output.
 speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config)
-
 result = speech_synthesizer.speak_ssml_async(speak_xml).get()
 
+# output in file not stream
 # output_file = "output.wav"
 # if result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
 #     audio_data = result.audio_data
